@@ -17,13 +17,13 @@ const Connect = () => {
 
         {/* LEFT */}
         <div className="w-full md:w-1/2 h-[50vh] md:h-auto relative overflow-hidden">
-          <video
+          <video 
             src="/videos/bg.mp4"
             autoPlay
             loop
             muted
             playsInline
-            className="absolute top-0 left-0 w-full h-full object-cover"
+            className="absolute top-0 left-0 w-full h-full opacity-30 object-cover"
           />
 
           <h1 className="absolute top-0 left-0 w-full text-[21vw] md:text-[8vw] font-extrabold tracking-tighter md:leading-25 leading-18 p-6 md:p-10 text-black">
@@ -70,26 +70,26 @@ const Connect = () => {
 
         {/* LEFT — OUTLINE LOGO */}
         <h1
-          className="text-[12vw] md:text-[10vw] font-extrabold uppercase tracking-tighter text-white"
+          className="text-[12vw] md:text-[12vw] font-extrabold uppercase tracking-tighter"
           style={{
-            WebkitTextStroke: "5px #F9F9F9",
+            WebkitTextStroke: "2px #F9F9F9",
             color: "transparent",
           }}
         >
-          OSISZ<span className="text-orange-500">.</span>
+          OASIS
         </h1>
 
         {/* RIGHT */}
         <div className="flex flex-col items-center md:items-end gap-6 text-sm">
 
           {/* Email + Location */}
-          <div className="text-[#A7A7A7] text-center text-2xl md:text-right">
-            <p> <span className="text-white font-bold">Email-</span> hello@oasis.com</p>
+          <div className="text-[#A7A7A7] text-center md:text-right">
+            <p>hello@oasis.com</p>
             <p>Ranchi, India</p>
           </div>
 
           {/* SOCIAL ICONS */}
-          <div className="flex gap-6 text-[#F9F9F9] text-3xl">
+          <div className="flex gap-6 text-[#F9F9F9] text-xl">
 
             <a href="#" className="transition-all duration-300 hover:text-[#E85002] hover:scale-125">
               <FaLinkedin />
