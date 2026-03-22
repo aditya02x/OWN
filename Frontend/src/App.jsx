@@ -5,11 +5,14 @@ import Showreel from './pages/Showreel'
 import Connect from './pages/Connect'
 import Services from './pages/Services'
 
+import ProjectSection from './pages/ProjectSection'
 const App = () => {
   return (
     <>
     <Navbar/>
     <Hero/>
+    <Showreel/>
+    <ProjectSection/>
     <Services/>
     <Connect/>
 
