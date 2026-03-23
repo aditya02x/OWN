@@ -14,7 +14,7 @@ const ProjectCard = ({ project, i, progress, total }) => {
   const scale = useTransform(progress, [start, 1], [1, 0.8]);
   
   return (
-    <div className="h-screen flex items-center justify-center sticky top-0">
+    <div className="h-screen flex items-center justify-center sticky top-0 ">
       <motion.div
         style={{
           scale,
@@ -69,7 +69,7 @@ const ProjectSection = () => {
 
       <div className="relative z-10">
         {/* Intro Space */}
-        <div className="h-[20vh] md:h-[40] flex flex-col items-center justify-center text-center">
+        <div className="h-[20vh] md:h-[40] flex flex-col items-center justify-center text-center p-9 pt-30 md:pt-31">
           <h2 className="text-white text-5xl  md:text-7xl font-bold tracking-tighter uppercase">
             Selected <span className="text-orange-500">Works</span>
           </h2>
