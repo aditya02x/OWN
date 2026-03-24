@@ -1,55 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 
 const Hero = () => {
+  const [email, setEmail] = useState("");
+
+  const techStack = ["Landing Page", "Websites", "Ecommerce", "SAAS", "Creative Website", "Backend", "Subsrcription_Models", "Web_APP", "UI/UX"];
+
   return (
-    <section className="relative w-full min-h-screen bg-black overflow-hidden flex items-center justify-center font-sans select-none px-4 sm:px-6">
+    <section className="relative w-full min-h-screen bg-[#000000] flex flex-col items-center justify-center font-sans select-none px-4 sm:px-6 overflow-hidden">
       
-      {/* Background */}
-      <div className="absolute inset-0 z-0">
-        <motion.div 
-          animate={{ x: [0, 50, 0], y: [0, 30, 0], scale: [1, 1.2, 1] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="absolute top-[-10%] left-[-10%] w-[70vw] h-[70vw] rounded-full bg-[#E85002] opacity-0 blur-[100px]"
-        />
-        <motion.div 
-          animate={{ x: [0, -40, 0], y: [0, -60, 0] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-[#E85002] opacity-10 blur-[100px]"
-        />
-        <div className="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
-      </div>
-
-      {/* Background Text */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-5">
-        <motion.h2 
-          animate={{ x: [0, -150, 0] }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-          className="text-[20vw] sm:text-[15vw] font-black uppercase whitespace-nowrap"
-          style={{ WebkitTextStroke: "1px #ffffff", color: "transparent" }}
-        >
-          OASIS OASIS OASIS
-        </motion.h2>
-      </div>
-
-      {/* Floating Circle */}
-      <motion.div 
-        animate={{ rotate: 360, scale: [1, 1.05, 1] }}
-        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-        className="hidden sm:flex absolute top-[15%] left-[5%] w-28 h-28 md:w-56 md:h-56 border border-[#E85002]/30 rounded-full items-center justify-center"
-      >
-        <div className="w-full h-[1px] bg-[#E85002]/30 rotate-45" />
-        <div className="w-[1px] h-full bg-[#E85002]/30" />
-      </motion.div>
-
-      {/* Content */}
+      {/* Main Content */}
       <div className="relative z-10 w-full max-w-5xl flex flex-col items-center text-center">
         
         <motion.span 
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-[#E85002] text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.3em] sm:tracking-[0.4em] mb-4 sm:mb-6"
+          className="text-[#E85002] text-[12px] sm:text-xs font-bold uppercase tracking-[0.4em] mb-6"
         >
           Idea. Prototype. Live Product.
         </motion.span>
@@ -58,12 +25,11 @@ const Hero = () => {
           initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="text-[#F9F9F9] text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight"
+          className="text-[#F9F9F9] text-3xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight"
         >
           WE DON’T JUST BUILD{" "}
-          
           <span className="inline-block px-2 sm:px-4 py-1 mx-1 sm:mx-2 border border-[#E85002]/30 rounded-md">
-            <span className="text-[#E85002] drop-shadow-[0_0_8px_#E85002]">
+            <span className="text-[#E85002]">
               <Typewriter
                 words={["WEBSITES", "SAAS", "WEB APP", "BRANDS"]}
                 loop={true}
@@ -75,49 +41,83 @@ const Hero = () => {
               />
             </span>
           </span>
-
           <br className="hidden sm:block" />
-          WE BUILD GROWTH ENGINE
+          WE BUILD GROWTH ENGINES
         </motion.h1>
 
         <motion.p 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="mt-4 sm:mt-5 max-w-xl text-[#A7A7A7] text-xs sm:text-sm md:text-lg leading-relaxed"
+          className="mt-6 max-w-xl text-[#A7A7A7] text-sm sm:text-base md:text-lg"
         >
-          Your ambition deserves more than a basic website. We build digital experiences that win.
+          Your ambition deserves more than a basic website. 
+          We build digital experiences that win.
         </motion.p>
 
-        {/* Bottom Section */}
-        <div className="mt-12 sm:mt-20 flex flex-col md:flex-row items-center justify-between w-full gap-10 md:gap-16">
-          
-          <p className="max-w-[280px] text-[#555555] text-[10px] font-bold uppercase tracking-[0.3em] leading-loose border-l border-[#333333] pl-6 text-left">
-            [01] Strategy Architecture <br />
-            [02] Scalable Infrastructure <br />
-            [03] High-Fidelity Deployment
-          </p>
-
-          <motion.button 
-            initial="initial"
-            whileHover="hover"
-            className="relative group overflow-hidden px-8 sm:px-12 md:px-16 py-4 sm:py-6 border border-[#F9F9F9]/20 hover:border-[#E85002]"
+        {/* CONNECT SECTION */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="mt-12 w-full max-w-md"
+        >
+          <form 
+            onSubmit={(e) => e.preventDefault()}
+            className="flex items-center p-1 bg-[#0A0A0A] border border-white/10 rounded-full focus-within:border-[#E85002]/50 transition-all duration-300"
           >
-            <motion.div 
-              variants={{
-                initial: { x: "-105%" },
-                hover: { x: 0 }
-              }}
-              transition={{ duration: 0.5 }}
-              className="absolute inset-0 bg-[#E85002]"
+            <input 
+              type="email" 
+              placeholder="Enter your email" 
+              className="w-full bg-transparent px-6 py-3 text-white outline-none placeholder:text-gray-600 text-sm"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
-            <span className="relative z-10 text-[#F9F9F9] group-hover:text-black font-black text-[10px] sm:text-xs md:text-sm uppercase tracking-[0.4em] flex items-center gap-3 sm:gap-6">
-              Start The Engine
-              <span className="text-lg sm:text-xl group-hover:translate-x-2 transition-transform">→</span>
-            </span>
-          </motion.button>
+            <button 
+              className="bg-[#E85002] text-white px-8 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-[#ff6a1a] transition-colors"
+            >
+              Connect
+            </button>
+          </form>
+        </motion.div>
 
-        </div>
+        {/* --- ADJUSTED MARQUEE WIDTH --- */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          // Width increased to max-w-xl (approx 576px) for a wider, more balanced look
+          className="mt-20 w-full max-w-2xl relative overflow-hidden group"
+          style={{ 
+            maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' 
+          }}
+        >
+          <div className="flex whitespace-nowrap py-2">
+            <motion.div 
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ 
+                duration: 40, // Slower speed for a more premium feel
+                repeat: Infinity, 
+                ease: "linear" 
+              }}
+              // Added a hover effect to slow down the marquee when the user engages
+              whileHover={{ scale: 1.02 }}
+              className="flex gap-12 items-center"
+            >
+              {[...techStack, ...techStack].map((item, index) => (
+                <span 
+                  key={index} 
+                  className="text-white text-[12Px] sm:text-[11px] font-bold uppercase tracking-[0.3em] transition-colors hover:text-[#E85002]"
+                >
+                  {item}
+                </span>
+              ))}
+            </motion.div>
+          </div>
+        </motion.div>
+        {/* --- END MARQUEE --- */}
+
       </div>
     </section>
   );

@@ -1,14 +1,25 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion"; // ✅ FIX
 
 export default function Navbar() {
-  const [active, setActive] = useState("home");
+  const [active, setActive] = useState("HOME"); // ✅ match with navItems
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const scrollTo = (id) => {
+    const map = {
+      HOME: "home",
+      SHOWREEL: "showreel",
+      SERVICES: "services",
+      PROJECT: "projects",
+      HIRE: "connect"
+    };
+
+    const targetId = map[id] || id.toLowerCase();
     setActive(id);
     setMenuOpen(false);
-    const element = document.getElementById(id);
+
+    const element = document.getElementById(targetId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -22,25 +33,23 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = ["HOME", "SHOWREEL", "SERVICES", "PROJECT", "HIRE"];
+  const navItems = ["HOME", "SHOWREEL", "Projects","Services", "HIRE"];
 
   return (
     <>
-      {/* WRAPPER: Fixed and high Z-index. 
-          The top-6 keeps it floating, which looks more "Creative Agency" 
-      */}
+      {/* Floating Navbar Wrapper */}
       <div className="fixed top-6 w-full flex justify-center z-[100] px-4">
         <nav
           className={`flex justify-between items-center px-8 transition-all duration-500 ease-in-out
-          ${scrolled ? "py-3 w-full md:w-[90%] bg-black/60" : "py-4 w-full md:w-[60%] bg-[#333333]/20"}
-          backdrop-blur-md border border-white/10 rounded-full`}
+          ${scrolled ? "py-3 w-full md:w-[90%] bg-black/80" : "py-4 w-full md:w-[60%] bg-[#333333]/10"}
+          backdrop-blur-xl border border-white/5 rounded-full shadow-2xl shadow-black/50`}
         >
-          {/* Logo - Matching your Oasis Branding */}
+          {/* Logo */}
           <h1
-            onClick={() => scrollTo("home")}
+            onClick={() => scrollTo("HOME")}
             className="text-[#F9F9F9] font-black text-xl cursor-pointer tracking-tighter group"
           >
-            OASIS<span className="text-[#E85002] group-hover:italic transition-all">.</span>
+            OSISZ<span className="text-[#E85002] group-hover:italic transition-all">.</span>
           </h1>
 
           {/* Desktop Menu */}
@@ -55,7 +64,10 @@ export default function Navbar() {
               >
                 {item}
                 {active === item && (
-                  <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-[#E85002]" />
+                  <motion.span 
+                    layoutId="navUnderline"
+                    className="absolute -bottom-1 left-0 w-full h-[1px] bg-[#E85002] shadow-[0_0_8px_#22C55E]" 
+                  />
                 )}
               </button>
             ))}
@@ -64,7 +76,7 @@ export default function Navbar() {
           {/* Mobile Toggle */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden flex flex-col gap-1.5"
+            className="md:hidden flex flex-col gap-1.5 z-[110]"
           >
             <div className={`w-6 h-[2px] bg-white transition-all ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
             <div className={`w-6 h-[2px] bg-white ${menuOpen ? "opacity-0" : ""}`} />
@@ -73,12 +85,14 @@ export default function Navbar() {
         </nav>
       </div>
 
-      {/* Fullscreen Mobile Menu */}
+      {/* Mobile Menu */}
       {menuOpen && (
         <div className="fixed inset-0 bg-black z-[90] flex flex-col items-center justify-center gap-6">
-           <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
-              <div className="absolute top-[-10%] right-[-10%] w-[300px] h-[300px] rounded-full bg-[#E85002] blur-[120px]" />
-           </div>
+          <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+            <div className="absolute top-[-10%] right-[-10%] w-[300px] h-[300px] rounded-full bg-[#E85002] blur-[120px]" />
+            <div className="absolute bottom-[-10%] left-[-10%] w-[300px] h-[300px] rounded-full bg-[#166534] blur-[120px]" />
+          </div>
+
           {navItems.map((item) => (
             <button
               key={item}

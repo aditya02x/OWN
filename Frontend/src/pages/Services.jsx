@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 
 const Services = () => {
@@ -15,10 +16,33 @@ const Services = () => {
 
       <div className="relative max-w-6xl mx-auto">
 
-        {/* 🔥 Heading */}
-        <h2 className="text-2xl md:text-5xl font-bold text-white mb-12">
-          Services That <span className="text-orange-500">Drive Results</span>
-        </h2>
+        {/* --- OASIS SIGNATURE HEADING --- */}
+        <div className="mb-24 text-left space-y-4">
+          <motion.p 
+            initial={{ opacity: 0, x: -10 }}
+            whileInView={{ opacity: 0.5, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-[#E85002] text-[10px] font-bold uppercase tracking-[0.5em]"
+          >
+            Capabilities
+          </motion.p>
+          
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-white text-4xl md:text-6xl font-light tracking-tight leading-none"
+          >
+            Services that <span className="text-[#E85002] italic font-serif">drive results</span>
+          </motion.h2>
+          
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: "80px" }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="h-[1px] bg-[#E85002] mt-6"
+          />
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
@@ -34,7 +58,7 @@ const Services = () => {
             </div>
 
             <div className="mt-8">
-              <p className="text-xl text-orange-500 font-semibold">
+              <p className="text-xl text-orange-500 font-semibold italic">
                 “Your idea. My execution.”
               </p>
             </div>
@@ -42,7 +66,6 @@ const Services = () => {
 
           {/* Top Right */}
           <div className={cardStyle}>
-            
             <h2 className="text-white text-2xl font-bold mb-4">
               Interfaces That Feel Alive
             </h2>
@@ -51,17 +74,16 @@ const Services = () => {
             </p>
             <span className="text-xs font-extrabold text-orange-500">
               “If it doesn’t feel smooth, it’s not done.”
-            </span >
+            </span>
           </div>
 
-          {/* 🔥 Bottom Left: Updated Profile Section */}
+          {/* Bottom Left: Profile Section */}
           <div className={`${cardStyle} flex flex-col justify-between`}>
             <div>
               <div className="flex items-center gap-4 mb-6">
-                {/* Profile Photo Placeholder */}
                 <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-orange-500 shadow-lg">
                   <img 
-                    src="./image/profile.jpeg" // Replace this with your actual photo path
+                    src="./image/profile.jpeg" 
                     alt="Aditya Raj"
                     className="w-full h-full object-cover"
                   />
@@ -75,15 +97,15 @@ const Services = () => {
               <h4 className="text-xl font-semibold text-white mb-4">Why me?</h4>
               
               <ul className="text-gray-400 space-y-3 leading-relaxed">
-                <li className="flex gap-2">
+                <li className="flex gap-2 text-sm">
                   <span className="text-orange-500">➔</span> 
                   Code that converts. Average doesn't cut it.
                 </li>
-                <li className="flex gap-2">
+                <li className="flex gap-2 text-sm">
                   <span className="text-orange-500">➔</span> 
                   Obsessed with performance. Fast is default.
                 </li>
-                <li className="flex gap-2">
+                <li className="flex gap-2 text-sm">
                   <span className="text-orange-500">➔</span> 
                   Strategic development. No fluff, just structure.
                 </li>
@@ -97,24 +119,15 @@ const Services = () => {
               Everything Your Business Needs
             </h2>
             <p className="text-gray-400 mb-8 max-w-2xl">
-              I don’t just build websites — I craft complete digital experiences. From design to development,
-              every detail is focused on performance, usability, and real results.
+              I don’t just build websites — I craft complete digital experiences. From design to development, every detail is focused on performance, usability, and real results.
             </p>
 
             <div className="flex flex-wrap gap-2">
               {[
-                "Responsive Design",
-                "Fast Performance",
-                "Modern UI/UX",
-                "Animations",
-                "Authentication",
-                "Dashboards",
-                "API Integration",
-                "SEO Basics",
-                "Mobile Optimized",
-                "Scalable Structure",
-                "Clean Code",
-                "User Experience"
+                "Responsive Design", "Fast Performance", "Modern UI/UX",
+                "Animations", "Authentication", "Dashboards",
+                "API Integration", "SEO Basics", "Mobile Optimized",
+                "Scalable Structure", "Clean Code", "User Experience"
               ].map((tag) => (
                 <span
                   key={tag}
@@ -126,20 +139,19 @@ const Services = () => {
                   {tag}
                 </span>
               ))}
-
             </div>
-            <div className="stck mt-10">
-             <div className="svg flex justify-center items-center gap-5 ">
-                 <img className='h-5 md:h-10' src="/image/react.svg" alt="" />
-                 <img className='h-5 md:h-10' src="/image/MongoDB.svg" alt="" />
-                 <img className='h-5 md:h-10 ' src="/image/next-js.svg" alt="" />
-                 <img className='h-5 md:h-10 ' src="/image/node.js.svg" alt="" />
-                 <img className='h-5 md:h-10 ' src="/image/ex.svg" alt="" />
-                 <img className='h-5 md:h-10' src="/image/Tailwind CSS.svg" alt="" />
-                 <img className='h-5 md:h-10' src="/image/figma.svg" alt="" />
-                 <img className='h-5 md:h-10  ' src="/image/gsap.svg" alt="" />
 
-             </div>
+            <div className="mt-10">
+              <div className="flex flex-wrap justify-center items-center gap-5 opacity-60">
+                <img className='h-5 md:h-8' src="/image/react.svg" alt="React" />
+                <img className='h-5 md:h-8' src="/image/MongoDB.svg" alt="MongoDB" />
+                <img className='h-5 md:h-8' src="/image/next-js.svg" alt="NextJS" />
+                <img className='h-5 md:h-8' src="/image/node.js.svg" alt="Node" />
+                <img className='h-5 md:h-8' src="/image/ex.svg" alt="Express" />
+                <img className='h-5 md:h-8' src="/image/Tailwind CSS.svg" alt="Tailwind" />
+                <img className='h-5 md:h-8' src="/image/figma.svg" alt="Figma" />
+                <img className='h-5 md:h-8' src="/image/gsap.svg" alt="GSAP" />
+              </div>
             </div>
           </div>
 

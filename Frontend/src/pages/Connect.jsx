@@ -7,114 +7,152 @@ import {
   FaYoutube,
   FaTwitter,
 } from "react-icons/fa";
-import { Mail, MapPin } from "lucide-react";
+import { Mail, MapPin, ArrowRight } from "lucide-react";
 
 const Connect = () => {
   return (
-    <section id="contact" className="w-full bg-[#ffffff]">
+    <section id="contact" className="w-full bg-black">
 
-      {/* 🔥 UPPER - Video Background with Glassmorphism Form */}
-      <div className="relative min-h-[70vh] w-full flex flex-col md:flex-row overflow-hidden">
+      {/* 🔥 UPPER - Refined Dark Video Section */}
+      <div className="relative min-h-screen w-full flex flex-col md:flex-row overflow-hidden border-b border-white/5">
         
-        {/* Full-width Video Background */}
-        <video 
-          src="/videos/bg.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-40 blur-[2px]"
-        />
-
-        {/* LEFT - Heading */}
-        <div className="w-full md:w-1/2 h-[35vh] md:h-auto relative z-10 flex items-start justify-start">
-          <h1 className="text-[21vw] md:text-[8vw] font-extrabold tracking-tighter md:leading-[1.1] leading-none p-6 md:p-10 text-black">
-            Get In <br /> Touch
-          </h1>
+        {/* Background Video with Dark Overlay */}
+        <div className="absolute inset-0 z-0">
+          <video 
+            src="/videos/bg.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-30 grayscale"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
         </div>
 
-        {/* RIGHT - Glassmorphism Form */}
-        <div className="w-full md:w-1/2 flex items-center justify-center px-6 md:px-8 py-10 md:py-20 relative z-10">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="w-full max-w-md bg-white/20 backdrop-blur-xl border border-white/30 rounded-[30px] p-8 md:p-10 shadow-2xl"
+        {/* LEFT - Bold Typography */}
+        <div className="w-full md:w-1/2 relative z-10 flex flex-col justify-center p-8 md:p-20">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <form className="flex flex-col gap-6">
-              <input 
-                type="text" 
-                placeholder="Your Name" 
-                className="w-full border-b border-black/30 bg-transparent outline-none py-2 placeholder:text-black/50 text-black" 
-              />
-              <input 
-                type="email" 
-                placeholder="Your Email" 
-                className="w-full border-b border-black/30 bg-transparent outline-none py-2 placeholder:text-black/50 text-black" 
-              />
-              <textarea 
-                placeholder="Your Message" 
-                rows="4" 
-                className="w-full border-b border-black/30 bg-transparent outline-none py-2 resize-none placeholder:text-black/50 text-black" 
-              />
+            <h1 className="text-[18vw] md:text-[8vw] font-black tracking-tighter leading-none text-white">
+              GET IN <br /> 
+              <span className="text-[#E85002]">TOUCH</span>
+            </h1>
+            <p className="mt-6 text-gray-500 max-w-sm text-sm md:text-base font-light leading-relaxed">
+              Have a vision? We have the engine. Let’s collaborate to build something that disrupts the ordinary.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* RIGHT - Premium Glass Form */}
+        <div className="w-full md:w-1/2 flex items-center justify-center px-6 md:px-12 py-20 relative z-10">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            className="w-full max-w-md bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-[40px] p-8 md:p-12 shadow-2xl relative overflow-hidden group"
+          >
+            {/* Subtle glow effect behind form */}
+            <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#E85002]/20 rounded-full blur-[80px] group-hover:bg-[#E85002]/30 transition-all duration-700" />
+
+            <form className="flex flex-col gap-8 relative z-10">
+              <div className="space-y-1">
+                <label className="text-[10px] uppercase tracking-[0.2em] text-[#E85002] font-bold">Your Name</label>
+                <input 
+                  type="text" 
+                  className="w-full bg-transparent border-b border-white/10 outline-none py-2 text-white focus:border-[#E85002] transition-colors placeholder:text-white/10" 
+                  placeholder="John Doe"
+                />
+              </div>
+              
+              <div className="space-y-1">
+                <label className="text-[10px] uppercase tracking-[0.2em] text-[#E85002] font-bold">Email Address</label>
+                <input 
+                  type="email" 
+                  className="w-full bg-transparent border-b border-white/10 outline-none py-2 text-white focus:border-[#E85002] transition-colors placeholder:text-white/10" 
+                  placeholder="john@oasis.com"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[10px] uppercase tracking-[0.2em] text-[#E85002] font-bold">Message</label>
+                <textarea 
+                  rows="3" 
+                  className="w-full bg-transparent border-b border-white/10 outline-none py-2 resize-none text-white focus:border-[#E85002] transition-colors placeholder:text-white/10" 
+                  placeholder="Tell us about your project..."
+                />
+              </div>
+
               <motion.button 
-                whileHover={{ scale: 1.02 }} 
+                whileHover={{ scale: 1.02, backgroundColor: "#ff5e0a" }} 
                 whileTap={{ scale: 0.98 }}
-                className="bg-[#E85002] text-white font-bold py-4 rounded-xl uppercase tracking-widest shadow-lg shadow-[#E85002]/20"
+                className="bg-[#E85002] text-white font-black py-5 rounded-2xl uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3 transition-all shadow-[0_10px_30px_rgba(232,80,2,0.2)]"
               >
-                Let’s Build This →
+                Launch Project <ArrowRight className="w-4 h-4" />
               </motion.button>
             </form>
           </motion.div>
         </div>
       </div>
 
-      {/* 🔥 LOWER - No changes made here as requested */}
-      <div className="relative w-full bg-black rounded-t-[60px] border-t border-white/10 px-8 md:px-20 py-16 overflow-hidden">
+      {/* 🔥 LOWER - Maintained with Small Visual Polish */}
+      <div className="relative w-full bg-black px-8 md:px-20 py-24 overflow-hidden">
         
-        <div className="absolute top-[-100px] left-[-100px] w-[400px] h-[400px] bg-orange-500/15 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-[-100px] right-[-100px] w-[400px] h-[400px] bg-orange-600/15 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-[-100px] left-[-100px] w-[400px] h-[400px] bg-[#E85002]/10 rounded-full blur-[120px] pointer-events-none" />
 
-        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
-          <h1 className="text-[20vw] md:text-[10vw] font-black text-white uppercase tracking-tighter leading-none">
-            OASIS<span className="text-[15vw] md:text-[10vw] text-orange-500">.</span>
-          </h1>
+        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-16">
+          <motion.h1 
+            whileInView={{ opacity: [0, 1], y: [20, 0] }}
+            className="text-[18vw] md:text-[10vw] font-black text-white uppercase tracking-tighter leading-none"
+          >
+            OSISZ<span className="text-[#E85002]">.</span>
+          </motion.h1>
 
-          <div className="flex flex-col items-center md:items-end gap-8">
-            <div className="flex flex-col md:flex-row gap-8">
-              <div className="flex items-center gap-4 group cursor-pointer">
-                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#E85002] transition-all">
-                  <Mail className="w-5 h-5 text-white" />
+          <div className="flex flex-col items-center md:items-end gap-10">
+            <div className="flex flex-col md:flex-row gap-12">
+              <div className="flex items-center gap-5 group cursor-pointer">
+                <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-[#E85002] group-hover:rotate-12 transition-all duration-500">
+                  <Mail className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <p className="text-gray-500 text-[13px] font-mono uppercase">Email Me</p>
-                  <p className="text-white font-medium">adityaraj34@icloud.com</p>
+                  <p className="text-gray-500 text-[10px] font-mono tracking-widest uppercase mb-1">Inquiry</p>
+                  <p className="text-white font-medium text-sm">adityaraj34@icloud.com</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 group">
-                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center">
-                  <MapPin className="w-5 h-5 text-[#E85002]" />
+              <div className="flex items-center gap-5 group cursor-pointer">
+                <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-[#E85002] group-hover:-rotate-12 transition-all duration-500">
+                  <MapPin className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <p className="text-gray-500 text-[10px] font-mono uppercase">Location</p>
-                  <p className="text-white font-medium">Ranchi, India</p>
+                  <p className="text-gray-500 text-[10px] font-mono tracking-widest uppercase mb-1">HQ</p>
+                  <p className="text-white font-medium text-sm">Ranchi, India</p>
                 </div>
               </div>
             </div>
 
-            <div className="flex gap-6 text-white/40 text-2xl">
-              <a href="#" className="hover:text-[#E85002] hover:scale-125 transition-all"><FaLinkedin /></a>
-              <a href="#" className="hover:text-[#E85002] hover:scale-125 transition-all"><FaInstagram /></a>
-              <a href="#" className="hover:text-[#E85002] hover:scale-125 transition-all"><FaGithub /></a>
-              <a href="#" className="hover:text-[#E85002] hover:scale-125 transition-all"><FaYoutube /></a>
-              <a href="#" className="hover:text-[#E85002] hover:scale-125 transition-all"><FaTwitter /></a>
+            <div className="flex gap-8 text-white/30 text-2xl">
+              {[FaLinkedin, FaInstagram, FaGithub, FaYoutube, FaTwitter].map((Icon, i) => (
+                <motion.a 
+                  key={i} 
+                  href="#" 
+                  whileHover={{ y: -5, color: "#E85002" }}
+                  className="transition-colors"
+                >
+                  <Icon />
+                </motion.a>
+              ))}
             </div>
           </div>
         </div>
 
-        <div className="relative z-10 mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-600 text-[10px] font-mono tracking-[0.2em] uppercase">
-          <p>© 2026 Osisz. Crafted with passion. All rights reserved..</p>
-          <p></p>
+        <div className="relative z-10 mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-gray-600 text-[9px] font-mono tracking-[0.3em] uppercase opacity-50">
+          <p>© 2026 Osisz. Crafted with passion. All rights reserved.</p>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-white transition-colors">Privacy</a>
+            <a href="#" className="hover:text-white transition-colors">Terms</a>
+          </div>
         </div>
       </div>
 

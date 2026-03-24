@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion'; // ✅ FIX: added this import
 
 const Showreel = () => {
   return (
@@ -8,21 +9,43 @@ const Showreel = () => {
       <div className="max-w-6xl w-full relative">
         
         {/* Header Section */}
-        <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6 relative">
+        <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8 relative">
           
-          <div>
-            <span className="text-orange-500 font-bold uppercase tracking-[0.2em] text-sm mb-2 block">
+          <div className="space-y-4">
+            <motion.p 
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 0.5, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-[#E85002] text-[10px] font-bold uppercase tracking-[0.5em]"
+            >
               Portfolio 2026
-            </span>
+            </motion.p>
 
-            <h2 className="text-5xl md:text-7xl font-black font-caveat text-white leading-none italic uppercase">
-              Show<span className="text-orange-600">reel</span>
-            </h2>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="text-white text-5xl md:text-7xl font-light tracking-tight leading-none"
+            >
+              Our <span className="text-[#E85002] italic font-serif">Showreel</span>
+            </motion.h2>
+
+            <motion.div 
+              initial={{ width: 0 }}
+              whileInView={{ width: "80px" }}
+              transition={{ duration: 1, delay: 0.4 }}
+              className="h-[1px] bg-[#E85002] mt-4"
+            />
           </div>
 
-          <p className="max-w-xs text-gray-400 text-sm border-l border-orange-500/30 pl-4">
+          <motion.p 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="max-w-xs text-gray-500 text-sm border-l border-white/10 pl-6 leading-relaxed font-light"
+          >
             A curated selection of creative projects, visual stories, and technical implementations.
-          </p>
+          </motion.p>
         </div>
 
         {/* Video Placeholder */}
