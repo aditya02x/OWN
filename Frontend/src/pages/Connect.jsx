@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+import axios from "axios";
 import {
   FaLinkedin,
   FaInstagram,
@@ -7,13 +8,41 @@ import {
   FaYoutube,
   FaTwitter,
 } from "react-icons/fa";
-import { Mail, MapPin, ArrowRight } from "lucide-react";
+import { Mail, MapPin, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 
 const Connect = () => {
+  // 1. Form State
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState("idle"); // idle | loading | success | error
+
+  // 2. Submit Handler
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("loading");
+
+    try {
+      // Connects to your Express server (Ensure server is running on port 5000)
+      const response = await axios.post("http://localhost:5000/api/contact", formData); //backend name 
+      
+      if (response.data.success) {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+        
+        // Return to default button state after 5 seconds
+        setTimeout(() => setStatus("idle"), 5000);
+      }
+    } catch (error) {
+      console.error("Submission Error:", error);
+      setStatus("error");
+      // Allow retry after 4 seconds
+      setTimeout(() => setStatus("idle"), 4000);
+    }
+  };
+
   return (
     <section id="contact" className="w-full bg-black">
 
-      {/* 🔥 UPPER - Refined Dark Video Section */}
+      {/* UPPER - Refined Dark Video Section */}
       <div className="relative min-h-screen w-full flex flex-col md:flex-row overflow-hidden border-b border-white/5">
         
         {/* Background Video with Dark Overlay */}
@@ -56,11 +85,14 @@ const Connect = () => {
             {/* Subtle glow effect behind form */}
             <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#E85002]/20 rounded-full blur-[80px] group-hover:bg-[#E85002]/30 transition-all duration-700" />
 
-            <form className="flex flex-col gap-8 relative z-10">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-8 relative z-10">
               <div className="space-y-1">
                 <label className="text-[10px] uppercase tracking-[0.2em] text-[#E85002] font-bold">Your Name</label>
                 <input 
                   type="text" 
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
                   className="w-full bg-transparent border-b border-white/10 outline-none py-2 text-white focus:border-[#E85002] transition-colors placeholder:text-white/10" 
                   placeholder="John Doe"
                 />
@@ -70,6 +102,9 @@ const Connect = () => {
                 <label className="text-[10px] uppercase tracking-[0.2em] text-[#E85002] font-bold">Email Address</label>
                 <input 
                   type="email" 
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
                   className="w-full bg-transparent border-b border-white/10 outline-none py-2 text-white focus:border-[#E85002] transition-colors placeholder:text-white/10" 
                   placeholder="john@oasis.com"
                 />
@@ -79,24 +114,39 @@ const Connect = () => {
                 <label className="text-[10px] uppercase tracking-[0.2em] text-[#E85002] font-bold">Message</label>
                 <textarea 
                   rows="3" 
+                  required
+                  value={formData.message}
+                  onChange={(e) => setFormData({...formData, message: e.target.value})}
                   className="w-full bg-transparent border-b border-white/10 outline-none py-2 resize-none text-white focus:border-[#E85002] transition-colors placeholder:text-white/10" 
                   placeholder="Tell us about your project..."
                 />
               </div>
 
               <motion.button 
-                whileHover={{ scale: 1.02, backgroundColor: "#ff5e0a" }} 
+                type="submit"
+                disabled={status === "loading" || status === "success"}
+                whileHover={{ scale: 1.02, backgroundColor: status === "success" ? "#10b981" : "#ff5e0a" }} 
                 whileTap={{ scale: 0.98 }}
-                className="bg-[#E85002] text-white font-black py-5 rounded-2xl uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3 transition-all shadow-[0_10px_30px_rgba(232,80,2,0.2)]"
+                className={`w-full font-black py-5 rounded-2xl uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3 transition-all shadow-2xl ${
+                    status === "success" ? "bg-emerald-500" : "bg-[#E85002]"
+                } text-white transition-colors duration-300`}
               >
-                Launch Project <ArrowRight className="w-4 h-4" />
+                {status === "loading" ? (
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                ) : status === "success" ? (
+                    <>Sent Successfully <CheckCircle2 className="w-4 h-4" /></>
+                ) : status === "error" ? (
+                    "Try Again"
+                ) : (
+                    <>Launch Project <ArrowRight className="w-4 h-4" /></>
+                )}
               </motion.button>
             </form>
           </motion.div>
         </div>
       </div>
 
-      {/* 🔥 LOWER - Maintained with Small Visual Polish */}
+      {/* LOWER - Maintained with Small Visual Polish */}
       <div className="relative w-full bg-black px-8 md:px-20 py-24 overflow-hidden">
         
         <div className="absolute top-[-100px] left-[-100px] w-[400px] h-[400px] bg-[#E85002]/10 rounded-full blur-[120px] pointer-events-none" />
