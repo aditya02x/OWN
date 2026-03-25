@@ -11,7 +11,11 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors(
+    {
+        origin: "https://own-blush.vercel.app"
+    }
+));
 app.use(express.json());
 
 // 1. Database Connection

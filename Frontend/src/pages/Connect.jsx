@@ -22,7 +22,7 @@ const Connect = () => {
 
     try {
       // Connects to your Express server (Ensure server is running on port 5000)
-      const response = await axios.post("http://localhost:5000/api/contact", formData); //backend name 
+      const response = await axios.post("https://osisz.onrender.com/api/contact", formData); //backend name 
       
       if (response.data.success) {
         setStatus("success");
