@@ -1,16 +1,53 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
+import axios from "axios";
 
 const Hero = () => {
   const [email, setEmail] = useState("");
+  const [status, setStatus] = useState("idle");
 
-  const techStack = ["Landing Page", "Websites", "Ecommerce", "SAAS", "Creative Website", "Backend", "Subsrcription_Models", "Web_APP", "UI/UX"];
+  const techStack = [
+    "Landing Page",
+    "Websites",
+    "Ecommerce",
+    "SAAS",
+    "Creative Website",
+    "Backend",
+    "Subscription_Models",
+    "Web_APP",
+    "UI/UX",
+  ];
+
+  // ✅ CONNECT EMAIL TO BACKEND
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("loading");
+
+    try {
+      const res = await axios.post(
+        "https://osisz.onrender.com/api/contact",
+        {
+          name: "Homepage User",
+          email: email,
+          message: "User connected from Hero section",
+        }
+      );
+
+      if (res.data.success) {
+        setStatus("success");
+        setEmail("");
+        setTimeout(() => setStatus("idle"), 4000);
+      }
+    } catch (err) {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4000);
+    }
+  };
 
   return (
     <section className="relative w-full min-h-screen bg-[#000000] flex flex-col items-center justify-center font-sans select-none px-4 sm:px-6 overflow-hidden">
       
-      {/* Main Content */}
       <div className="relative z-10 w-full max-w-5xl flex flex-col items-center text-center">
         
         <motion.span 
@@ -55,7 +92,7 @@ const Hero = () => {
           We build digital experiences that win.
         </motion.p>
 
-        {/* CONNECT SECTION */}
+        {/* 🔥 CONNECT FORM */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -63,30 +100,38 @@ const Hero = () => {
           className="mt-12 w-full max-w-md"
         >
           <form 
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
             className="flex items-center p-1 bg-[#0A0A0A] border border-white/10 rounded-full focus-within:border-[#E85002]/50 transition-all duration-300"
           >
             <input 
               type="email" 
+              required
               placeholder="Enter your email" 
               className="w-full bg-transparent px-6 py-3 text-white outline-none placeholder:text-gray-600 text-sm"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+
             <button 
+              type="submit"
               className="bg-[#E85002] text-white px-8 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-[#ff6a1a] transition-colors"
             >
-              Connect
+              {status === "loading"
+                ? "..."
+                : status === "success"
+                ? "Done"
+                : status === "error"
+                ? "Retry"
+                : "Connect"}
             </button>
           </form>
         </motion.div>
 
-        {/* --- ADJUSTED MARQUEE WIDTH --- */}
+        {/* MARQUEE */}
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
-          // Width increased to max-w-xl (approx 576px) for a wider, more balanced look
           className="mt-20 w-full max-w-2xl relative overflow-hidden group"
           style={{ 
             maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
@@ -96,19 +141,13 @@ const Hero = () => {
           <div className="flex whitespace-nowrap py-2">
             <motion.div 
               animate={{ x: ["0%", "-50%"] }}
-              transition={{ 
-                duration: 40, // Slower speed for a more premium feel
-                repeat: Infinity, 
-                ease: "linear" 
-              }}
-              // Added a hover effect to slow down the marquee when the user engages
-              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
               className="flex gap-12 items-center"
             >
               {[...techStack, ...techStack].map((item, index) => (
                 <span 
                   key={index} 
-                  className="text-white text-[12Px] sm:text-[11px] font-bold uppercase tracking-[0.3em] transition-colors hover:text-[#E85002]"
+                  className="text-white text-[12px] sm:text-[11px] font-bold uppercase tracking-[0.3em] hover:text-[#E85002]"
                 >
                   {item}
                 </span>
@@ -116,7 +155,6 @@ const Hero = () => {
             </motion.div>
           </div>
         </motion.div>
-        {/* --- END MARQUEE --- */}
 
       </div>
     </section>
