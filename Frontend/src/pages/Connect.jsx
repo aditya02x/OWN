@@ -10,31 +10,32 @@ import {
 } from "react-icons/fa";
 import { Mail, MapPin, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 
-const Connect = () => {
-  // 1. Form State
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState("idle"); // idle | loading | success | error
+const SOCIAL_LINKS = [
+  { Icon: FaLinkedin,  href: "https://www.linkedin.com/in/aditya-raj-75b077362?utm_source=share_via&utm_content=profile&utm_medium=member_ios",  label: "LinkedIn"  },
+  { Icon: FaInstagram, href: "https://instagram.com/your-handle",     label: "Instagram" },
+  { Icon: FaGithub,    href: "https://github.com/aditya02x",      label: "GitHub"    },
+  { Icon: FaYoutube,   href: "https://youtube.com/@your-channel",     label: "YouTube"   },
+  { Icon: FaTwitter,   href: "https://x.com/adityadevx?s=11",       label: "Twitter"   },
+];
 
-  // 2. Submit Handler
+const Connect = () => {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState("idle");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("loading");
 
     try {
-      // Connects to your Express server (Ensure server is running on port 5000)
-      const response = await axios.post("https://osisz.onrender.com/api/contact", formData); //backend name 
-      
+      const response = await axios.post("https://osisz.onrender.com/api/contact", formData);
       if (response.data.success) {
         setStatus("success");
         setFormData({ name: "", email: "", message: "" });
-        
-        // Return to default button state after 5 seconds
         setTimeout(() => setStatus("idle"), 5000);
       }
     } catch (error) {
       console.error("Submission Error:", error);
       setStatus("error");
-      // Allow retry after 4 seconds
       setTimeout(() => setStatus("idle"), 4000);
     }
   };
@@ -42,10 +43,8 @@ const Connect = () => {
   return (
     <section id="contact" className="w-full bg-black">
 
-      {/* UPPER - Refined Dark Video Section */}
       <div className="relative min-h-screen w-full flex flex-col md:flex-row overflow-hidden border-b border-white/5">
         
-        {/* Background Video with Dark Overlay */}
         <div className="absolute inset-0 z-0">
           <video 
             src="/videos/bg.mp4"
@@ -58,7 +57,6 @@ const Connect = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
         </div>
 
-        {/* LEFT - Bold Typography */}
         <div className="w-full md:w-1/2 relative z-10 flex flex-col justify-center p-8 md:p-20">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -70,19 +68,17 @@ const Connect = () => {
               <span className="text-[#E85002]">TOUCH</span>
             </h1>
             <p className="mt-6 text-gray-500 max-w-sm text-sm md:text-base font-light leading-relaxed">
-              Have a vision? We have the engine. Let’s collaborate to build something that disrupts the ordinary.
+              Have a vision? We have the engine. Let's collaborate to build something that disrupts the ordinary.
             </p>
           </motion.div>
         </div>
 
-        {/* RIGHT - Premium Glass Form */}
         <div className="w-full md:w-1/2 flex items-center justify-center px-6 md:px-12 py-20 relative z-10">
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             className="w-full max-w-md bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-[40px] p-8 md:p-12 shadow-2xl relative overflow-hidden group"
           >
-            {/* Subtle glow effect behind form */}
             <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#E85002]/20 rounded-full blur-[80px] group-hover:bg-[#E85002]/30 transition-all duration-700" />
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-8 relative z-10">
@@ -146,7 +142,6 @@ const Connect = () => {
         </div>
       </div>
 
-      {/* LOWER - Maintained with Small Visual Polish */}
       <div className="relative w-full bg-black px-8 md:px-20 py-24 overflow-hidden">
         
         <div className="absolute top-[-100px] left-[-100px] w-[400px] h-[400px] bg-[#E85002]/10 rounded-full blur-[120px] pointer-events-none" />
@@ -183,10 +178,13 @@ const Connect = () => {
             </div>
 
             <div className="flex gap-8 text-white/30 text-2xl">
-              {[FaLinkedin, FaInstagram, FaGithub, FaYoutube, FaTwitter].map((Icon, i) => (
+              {SOCIAL_LINKS.map(({ Icon, href, label }, i) => (
                 <motion.a 
-                  key={i} 
-                  href="#" 
+                  key={i}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
                   whileHover={{ y: -5, color: "#E85002" }}
                   className="transition-colors"
                 >

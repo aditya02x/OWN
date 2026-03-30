@@ -6,6 +6,7 @@ import Connect from './pages/Connect'
 import Services from './pages/Services'
 import More from './pages/More'
 import ProjectSection from './pages/ProjectSection'
+import Social from './pages/Social'
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       ` }} />
 
       <Navbar />
+      <Social/>
       
       <div id="home">
         <Hero />
