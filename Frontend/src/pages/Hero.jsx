@@ -111,18 +111,24 @@ const Hero = () => {
               className="w-full bg-transparent px-6 py-3 text-white outline-none text-sm"
             />
 
-            <button 
-              type="submit"
-              className="bg-[#E85002] px-6 py-2.5 rounded-full text-white text-xs font-bold"
-            >
-              {status === "loading"
-                ? "Sending..."
-                : status === "success"
-                ? "Done ✓"
-                : status === "error"
-                ? "Retry"
-                : "Connect"}
-            </button>
+           <button 
+  type="submit"
+  className={`px-6 py-2.5 rounded-full text-white text-xs font-bold transition-all duration-300 ${
+    status === "success"
+      ? "bg-green-500"
+      : status === "error"
+      ? "bg-red-500"
+      : "bg-[#E85002] hover:bg-[#ff6a1a]"
+  }`}
+>
+  {status === "loading"
+    ? "Sending..."
+    : status === "success"
+    ? "Done ✓"
+    : status === "error"
+    ? "Retry"
+    : "Connect"}
+</button>
           </form>
         </motion.div>
 
