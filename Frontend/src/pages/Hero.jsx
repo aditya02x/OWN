@@ -124,7 +124,7 @@ const Hero = () => {
   {status === "loading"
     ? "Sending..."
     : status === "success"
-    ? "Done ✓"
+    ? "Done  ✓"
     : status === "error"
     ? "Retry"
     : "Connect"}
@@ -133,7 +133,7 @@ const Hero = () => {
         </motion.div>
 
         {/* MARQUEE */}
-        <div className="mt-20 w-full max-w-2xl overflow-hidden">
+        <div className="mt-20 w-full max-w-2xl overflow-hidden font-bold">
           <div className="flex whitespace-nowrap">
             <motion.div 
               animate={{ x: ["0%", "-50%"] }}
