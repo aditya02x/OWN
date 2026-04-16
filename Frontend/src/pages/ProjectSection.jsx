@@ -3,9 +3,9 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 
 const projects = [
   { id: 1, title: "Landing Pages", image: "/image/bg.png", link: "https://pro-1-delta.vercel.app/" },
-  { id: 2, title: "Cloud Platform", image: "/images/project2.jpg", link: "#" },
-  { id: 3, title: "E-Commerce", image: "/images/project3.jpg", link: "#" },
-  { id: 4, title: "Analytics App", image: "/images/project4.jpg", link: "#" },
+  { id: 2, title: "Landing Pages", image: "/image/bgtwo.png", link: "https://landing-page-yezf.vercel.app/" },
+  { id: 3, title: "Ed-Tech", image: "/images/project3.jpg", link: "#" },
+  { id: 4, title: "E-Commerce", image: "/images/project4.jpg", link: "#" },
 ];
 
 const ProjectCard = ({ project, i, progress, total }) => {
