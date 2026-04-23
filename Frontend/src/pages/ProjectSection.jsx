@@ -5,7 +5,7 @@ const projects = [
   { id: 1, title: "Landing Pages", image: "/image/bg.png", link: "https://pro-1-delta.vercel.app/" },
   { id: 2, title: "Landing Pages", image: "/image/bgtwosvg.svg", link: "https://landing-page-yezf.vercel.app/" },
   { id: 3, title: "Ed-Tech", image: "/image/studify.png", link: "https://studify-khaki.vercel.app/" },
-  { id: 4, title: "E-Commerce", image: "/images/project4.jpg", link: "#" },
+  { id: 4, title: "E-Commerce", image: "/image/ecommerce.svg", link: "https://e-commerce-frontend-rho-one.vercel.app/" },
 ];
 
 const ProjectCard = ({ project, i, progress, total }) => {
