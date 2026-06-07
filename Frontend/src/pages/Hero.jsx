@@ -75,7 +75,7 @@ const Hero = () => {
           animate={{ y: 0, opacity: 1 }}
           className="text-white text-3xl sm:text-5xl md:text-6xl font-bold leading-tight"
         >
-          WE DON’T JUST BUILD{" "}
+          YOUR BUSINESS DOESN'T NEED ANOTHER{" "}
           <span className="px-3 py-1 border border-[#E85002]/30 rounded-md text-[#E85002]">
             <Typewriter
               words={["WEBSITES", "SAAS", "WEB APP", "BRANDS"]}
@@ -84,7 +84,7 @@ const Hero = () => {
             />
           </span>
           <br />
-          WE BUILD GROWTH ENGINES
+          IT NEEDS MORE CUSTOMERS.
         </motion.h1>
 
         <motion.p 
