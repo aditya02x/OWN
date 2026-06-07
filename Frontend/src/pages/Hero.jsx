@@ -70,22 +70,27 @@ const Hero = () => {
           Idea. Prototype. Live Product.
         </motion.span>
 
-        <motion.h1 
-          initial={{ y: 40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          className="text-white text-3xl sm:text-5xl md:text-6xl font-bold leading-tight"
-        >
-          YOUR BUSINESS DOESN'T NEED ANOTHER{" "}
-          <span className="px-3 py-1 border border-[#E85002]/30 rounded-md text-[#E85002]">
-            <Typewriter
-              words={["WEBSITES", "SAAS", "WEB APP", "BRANDS"]}
-              loop
-              cursor
-            />
-          </span>
-          <br />
-          IT NEEDS MORE CUSTOMERS.
-        </motion.h1>
+        <motion.h1
+  initial={{ y: 40, opacity: 0 }}
+  animate={{ y: 0, opacity: 1 }}
+  className="max-w-4xl px-2 sm:px-0 text-white font-bold leading-[1.05]
+             text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
+>
+  YOUR BUSINESS
+  <br />
+  NEEDS MORE
+  <span className="text-[#E85002]"> CUSTOMERS</span>,
+  <br />
+  NOT JUST
+  <span className="text-[#E85002]"> A{" "}
+    <Typewriter
+      words={["WEBSITE", "SAAS", "WEB APP", "BRAND"]}
+      loop
+      cursor
+    />
+  </span>
+  .
+</motion.h1>
 
         <motion.p 
           initial={{ opacity: 0 }}
